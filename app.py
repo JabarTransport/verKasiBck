@@ -15,8 +15,15 @@ CORS(
     origins=[
         os.getenv("FRONTEND_URL"),          # Netlify
         os.getenv("FIREBASE_LOGIN_URL")     # Firebase
-    ]
+    ],
+    methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"]
 )
+app.config.update(
+    SESSION_COOKIE_SAMESITE="None",
+    SESSION_COOKIE_SECURE=True
+)
+    
 
 # Konfigurasi dari Environment Variables
 GITHUB_CLIENT_ID = os.getenv("GITHUB_CLIENT_ID")
